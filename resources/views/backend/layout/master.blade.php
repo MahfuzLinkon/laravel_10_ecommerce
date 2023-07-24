@@ -34,6 +34,11 @@
     <!-- start: Favicon -->
     <link rel="shortcut icon" href="{{ asset('backend') }}/img/favicon.ico">
     <!-- end: Favicon -->
+    <style>
+        .submenu{
+            margin-left: 15px;
+        }
+    </style>
 </head>
 
 <body>

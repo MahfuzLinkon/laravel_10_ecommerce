@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->text('image')->nullable();
+            $table->tinyInteger('status')->default(1)->comment('1 => Active; 0 => Deactivate');
             $table->timestamps();
         });
     }

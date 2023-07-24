@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\AuthController;
+use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\SubCategoryController;
@@ -44,7 +45,8 @@ Route::prefix('/admin')->group(function(){
         Route::get('/sub-categories/status/{subCategory}',[SubCategoryController::class, 'status'])->name('sub-categories.status');
 
         // Brand Route
-//        Route::resource('brands', )
+        Route::resource('brands', BrandController::class);
+        Route::get('/brands/status/{brand}',[BrandController::class, 'status'])->name('brands.status');
     });
 });
 

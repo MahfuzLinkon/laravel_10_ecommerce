@@ -13,7 +13,9 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.brand.index', [
+            'brands' => Brand::latest()->get(),
+        ]);
     }
 
     /**
@@ -21,7 +23,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.brand.create');
     }
 
     /**
@@ -29,7 +31,12 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+        Brand::updateOrCreateBrand($request);
+        return redirect()->back()->with('success', 'Brand Crated Successfully!');
     }
 
     /**
@@ -45,7 +52,9 @@ class BrandController extends Controller
      */
     public function edit(Brand $brand)
     {
-        //
+        return view('backend.brand.edit', [
+            'brand' => $brand,
+        ]);
     }
 
     /**
@@ -53,7 +62,12 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+        Brand::updateOrCreateBrand($request, $id);
+        return redirect()->route('brands.index')->with('success', 'Brand Updated Successfully!');
     }
 
     /**
@@ -61,6 +75,25 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        //
+        if ($brand->image){
+            if (file_exists($brand->image)){
+                unlink($brand->image);
+            }
+        }
+        $brand->delete();
+        return redirect()->back()->with('success', 'Brand Deleted Successfully!');
+    }
+
+    public function status(Brand $brand)
+    {
+        if ($brand->status == 1){
+            $brand->status = 0;
+            $message = 'Deactivate Successfully!';
+        }else{
+            $brand->status = 1;
+            $message = 'Activate Successfully!';
+        }
+        $brand->save();
+        return redirect()->back()->with('success', $message);
     }
 }
