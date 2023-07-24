@@ -7,10 +7,18 @@
 {{--            <li><a href="ui.html"><i class="icon-eye-open"></i><span class="hidden-tablet"> UI Features</span></a></li>--}}
 {{--            <li><a href="widgets.html"><i class="icon-dashboard"></i><span class="hidden-tablet"> Widgets</span></a></li>--}}
             <li>
-                <a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Category</span></a>
+                <a class="dropmenu" href="#"><i class="icon-th-large"></i><span class="hidden-tablet"> Category</span></a>
                 <ul>
                     <li><a class="submenu" href="{{ route('categories.index') }}"><i class="icon-file-alt"></i><span class="hidden-tablet"> Category List</span></a></li>
                     <li><a class="submenu" href="{{ route('categories.create') }}"><i class="icon-edit"></i><span class="hidden-tablet"> Create Category</span></a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a class="dropmenu" href="#"><i class="icon-th"></i><span class="hidden-tablet"> Sub Category</span></a>
+                <ul>
+                    <li><a class="submenu" href="{{ route('sub-categories.index') }}"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Category List</span></a></li>
+                    <li><a class="submenu" href="{{ route('sub-categories.create') }}"><i class="icon-edit"></i><span class="hidden-tablet"> Create Sub Category</span></a></li>
                 </ul>
             </li>
 

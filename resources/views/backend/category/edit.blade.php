@@ -1,5 +1,5 @@
 @extends('backend.layout.master')
-@section('title', 'Edit category');
+@section('title', 'Edit category')
 @section('content')
     <ul class="breadcrumb">
         <li>
@@ -23,7 +23,7 @@
                         <div class="control-group">
                             <label class="control-label" for="date01">Category Name</label>
                             <div class="controls">
-                                <input type="text" value="{{ $category->name }}" class="input-xlarge span5" name="name" >
+                                <input type="text" style="width: 503px" value="{{ $category->name }}" class="input-xlarge span5" name="name" >
                             </div>
                             @error('name')
                             <div class="controls" style="margin-top: 5px;">

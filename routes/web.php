@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -25,7 +26,7 @@ require __DIR__.'/auth.php';
 
 
 // Backend All Route
-Route::prefix('admin')->group(function(){
+Route::prefix('/admin')->group(function(){
     Route::get('/login', [AuthController::class, 'index'])->name('admin.login')->middleware('guest');
     Route::post('/login', [AuthController::class, 'store'])->name('admin.login');
 
@@ -37,6 +38,13 @@ Route::prefix('admin')->group(function(){
         // Category Route
         Route::resource('/categories', CategoryController::class);
         Route::get('/categories/status/{id}',[CategoryController::class, 'status'])->name('categories.status');
+
+        // Sub Category Route
+        Route::resource('/sub-categories', SubCategoryController::class);
+        Route::get('/sub-categories/status/{subCategory}',[SubCategoryController::class, 'status'])->name('sub-categories.status');
+
+        // Brand Route
+//        Route::resource('brands', )
     });
 });
 
