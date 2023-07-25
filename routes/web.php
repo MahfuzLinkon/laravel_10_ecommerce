@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\UnitController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +48,10 @@ Route::prefix('/admin')->group(function(){
         // Brand Route
         Route::resource('brands', BrandController::class);
         Route::get('/brands/status/{brand}',[BrandController::class, 'status'])->name('brands.status');
+
+        // Unit Route
+        Route::resource('units', UnitController::class);
+        Route::get('/units/status/{unit}',[UnitController::class, 'status'])->name('units.status');
     });
 });
 

@@ -30,8 +30,19 @@
                 </ul>
             </li>
 
+            <li>
+                <a class="dropmenu" href="#"><i class="icon-th"></i><span class="hidden-tablet"> Unit</span></a>
+                <ul>
+                    <li><a class="submenu" href="{{ route('units.index') }}"><i class="icon-file-alt"></i><span class="hidden-tablet"> All Unit</span></a></li>
+                    <li><a class="submenu" href="{{ route('units.create') }}"><i class="icon-edit"></i><span class="hidden-tablet"> Create Unit</span></a></li>
+                </ul>
+            </li>
 
-{{--            <li><a href="form.html"><i class="icon-edit"></i><span class="hidden-tablet"> Forms</span></a></li>--}}
+
+
+
+
+            {{--            <li><a href="form.html"><i class="icon-edit"></i><span class="hidden-tablet"> Forms</span></a></li>--}}
 {{--            <li><a href="chart.html"><i class="icon-list-alt"></i><span class="hidden-tablet"> Charts</span></a></li>--}}
 {{--            <li><a href="typography.html"><i class="icon-font"></i><span class="hidden-tablet"> Typography</span></a></li>--}}
 {{--            <li><a href="gallery.html"><i class="icon-picture"></i><span class="hidden-tablet"> Gallery</span></a></li>--}}
