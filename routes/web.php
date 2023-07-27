@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\ColorController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\SizeController;
 use App\Http\Controllers\Backend\SubCategoryController;
@@ -57,6 +58,10 @@ Route::prefix('/admin')->group(function(){
         // Size Route
         Route::resource('sizes', SizeController::class);
         Route::get('/sizes/status/{size}',[SizeController::class, 'status'])->name('sizes.status');
+
+        // Color Route
+        Route::resource('colors', ColorController::class);
+        Route::get('/colors/status/{color}',[ColorController::class, 'status'])->name('colors.status');
     });
 });
 

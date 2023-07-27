@@ -23,7 +23,7 @@
             </li>
 
             <li>
-                <a class="dropmenu" href="#"><i class="icon-th"></i><span class="hidden-tablet"> Brand</span></a>
+                <a class="dropmenu" href="#"><i class="icon-fire"></i><span class="hidden-tablet"> Brand</span></a>
                 <ul>
                     <li><a class="submenu" href="{{ route('brands.index') }}"><i class="icon-file-alt"></i><span class="hidden-tablet"> All Brand</span></a></li>
                     <li><a class="submenu" href="{{ route('brands.create') }}"><i class="icon-edit"></i><span class="hidden-tablet"> Create Brand</span></a></li>
@@ -31,7 +31,7 @@
             </li>
 
             <li>
-                <a class="dropmenu" href="#"><i class="icon-th"></i><span class="hidden-tablet"> Unit</span></a>
+                <a class="dropmenu" href="#"><i class="icon-filter"></i><span class="hidden-tablet"> Unit</span></a>
                 <ul>
                     <li><a class="submenu" href="{{ route('units.index') }}"><i class="icon-file-alt"></i><span class="hidden-tablet"> All Unit</span></a></li>
                     <li><a class="submenu" href="{{ route('units.create') }}"><i class="icon-edit"></i><span class="hidden-tablet"> Create Unit</span></a></li>
@@ -39,10 +39,18 @@
             </li>
 
             <li>
-                <a class="dropmenu" href="#"><i class="icon-th"></i><span class="hidden-tablet"> Size</span></a>
+                <a class="dropmenu" href="#"><i class="icon-list-alt"></i><span class="hidden-tablet"> Size</span></a>
                 <ul>
                     <li><a class="submenu" href="{{ route('sizes.index') }}"><i class="icon-file-alt"></i><span class="hidden-tablet"> All Size</span></a></li>
                     <li><a class="submenu" href="{{ route('sizes.create') }}"><i class="icon-edit"></i><span class="hidden-tablet"> Create Size</span></a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a class="dropmenu" href="#"><i class="icon-adjust"></i><span class="hidden-tablet"> Color</span></a>
+                <ul>
+                    <li><a class="submenu" href="{{ route('colors.index') }}"><i class="icon-file-alt"></i><span class="hidden-tablet"> All Color</span></a></li>
+                    <li><a class="submenu" href="{{ route('colors.create') }}"><i class="icon-edit"></i><span class="hidden-tablet"> Create Color</span></a></li>
                 </ul>
             </li>
 

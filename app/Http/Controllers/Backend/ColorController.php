@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Size;
+use App\Models\Color;
 use Illuminate\Http\Request;
 
-class SizeController extends Controller
+class ColorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('backend.size.index', [
-            'sizes' => Size::latest()->get(),
+        return view('backend.color.index',[
+            'colors' => Color::latest()->get(),
         ]);
     }
 
@@ -23,7 +23,7 @@ class SizeController extends Controller
      */
     public function create()
     {
-        return view('backend.size.create');
+        return view('backend.color.create');
     }
 
     /**
@@ -32,16 +32,16 @@ class SizeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+           'name' => 'required',
         ]);
-        Size::updateOrCreateZize($request);
-        return redirect()->back()->with('success', 'Size Created Successfully!');
+        Color::updateOrCreateColor($request);
+        return redirect()->back()->with('success', 'Color Created Successfully!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Size $size)
+    public function show(Color $color)
     {
         //
     }
@@ -49,47 +49,44 @@ class SizeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Size $size)
+    public function edit(Color $color)
     {
-        return view('backend.size.edit', [
-           'size' => $size,
+        return view('backend.color.edit', [
+           'color' => $color,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Size $size)
+    public function update(Request $request, Color $color)
     {
         $request->validate([
             'name' => 'required',
         ]);
-        Size::updateOrCreateZize($request, $size->id);
-        return redirect()->route('sizes.index')->with('success', 'Size Updated Successfully!');
+        Color::updateOrCreateColor($request, $color->id);
+        return redirect()->route('colors.index')->with('success', 'Color Update Successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Size $size)
+    public function destroy(Color $color)
     {
-        $size->delete();
-        return redirect()->back()->with('success', 'Deleted Successfully!');
+        $color->delete();
+        return redirect()->back()->with('success', 'Color Deleted Successfully!');
     }
 
-    public function status(Size $size)
+    public function status(Color $color)
     {
-        if ($size->status == 1){
-            $size->status = 0;
+        if ($color->status == 1){
+            $color->status = 0;
             $message = 'Deactivate Successfully!';
         }else{
-            $size->status = 1;
+            $color->status = 1;
             $message = 'Activate Successfully!';
         }
-        $size->save();
+        $color->save();
         return redirect()->back()->with('success', $message);
     }
-
-
-
 }
