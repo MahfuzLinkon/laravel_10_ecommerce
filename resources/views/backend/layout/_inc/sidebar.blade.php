@@ -38,7 +38,13 @@
                 </ul>
             </li>
 
-
+            <li>
+                <a class="dropmenu" href="#"><i class="icon-th"></i><span class="hidden-tablet"> Size</span></a>
+                <ul>
+                    <li><a class="submenu" href="{{ route('sizes.index') }}"><i class="icon-file-alt"></i><span class="hidden-tablet"> All Size</span></a></li>
+                    <li><a class="submenu" href="{{ route('sizes.create') }}"><i class="icon-edit"></i><span class="hidden-tablet"> Create Size</span></a></li>
+                </ul>
+            </li>
 
 
 

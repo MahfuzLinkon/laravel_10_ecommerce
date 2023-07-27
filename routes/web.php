@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\SizeController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\UnitController;
 use App\Http\Controllers\Frontend\IndexController;
@@ -52,6 +53,10 @@ Route::prefix('/admin')->group(function(){
         // Unit Route
         Route::resource('units', UnitController::class);
         Route::get('/units/status/{unit}',[UnitController::class, 'status'])->name('units.status');
+
+        // Size Route
+        Route::resource('sizes', SizeController::class);
+        Route::get('/sizes/status/{size}',[SizeController::class, 'status'])->name('sizes.status');
     });
 });
 

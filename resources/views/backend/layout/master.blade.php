@@ -16,6 +16,7 @@
     <!-- start: CSS -->
     <link id="bootstrap-style" href="{{ asset('backend') }}/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('backend') }}/css/bootstrap-responsive.min.css" rel="stylesheet">
+{{--    <link id="base-style" href="{{ asset('backend') }}/css/tagsinput.css" rel="stylesheet">--}}
     <link id="base-style" href="{{ asset('backend') }}/css/style.css" rel="stylesheet">
     <link id="base-style-responsive" href="{{ asset('backend') }}/css/style-responsive.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
@@ -34,6 +35,13 @@
     <!-- start: Favicon -->
     <link rel="shortcut icon" href="{{ asset('backend') }}/img/favicon.ico">
     <!-- end: Favicon -->
+
+{{--    tags-input--}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+
+
     <style>
         .submenu{
             margin-left: 15px;
@@ -151,6 +159,7 @@
 <script src="{{ asset('backend') }}/js/retina.js"></script>
 
 <script src="{{ asset('backend') }}/js/custom.js"></script>
+{{--<script src="{{ asset('backend') }}/js/tagsinput.js"></script>--}}
 <!-- end: JavaScript-->
 
 </body>
