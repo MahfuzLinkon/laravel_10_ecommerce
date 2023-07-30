@@ -16,10 +16,10 @@
     <!-- start: CSS -->
     <link id="bootstrap-style" href="{{ asset('backend') }}/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('backend') }}/css/bootstrap-responsive.min.css" rel="stylesheet">
-{{--    <link id="base-style" href="{{ asset('backend') }}/css/tagsinput.css" rel="stylesheet">--}}
     <link id="base-style" href="{{ asset('backend') }}/css/style.css" rel="stylesheet">
     <link id="base-style-responsive" href="{{ asset('backend') }}/css/style-responsive.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- end: CSS -->
 
     <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -159,7 +159,21 @@
 <script src="{{ asset('backend') }}/js/retina.js"></script>
 
 <script src="{{ asset('backend') }}/js/custom.js"></script>
-{{--<script src="{{ asset('backend') }}/js/tagsinput.js"></script>--}}
+{{--Toster Alert js--}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+@if(Session::has('success'))
+    <script>
+        toastr.success("{{ Session::get('success') }}");
+        {{ Session::forget('success') }}
+    </script>
+@endif
+@if(Session::has('error'))
+    <script>
+        toastr.error("{{ Session::get('error') }}");
+        {{ Session::forget('error') }}
+    </script>
+@endif
+@yield('script')
 <!-- end: JavaScript-->
 
 </body>

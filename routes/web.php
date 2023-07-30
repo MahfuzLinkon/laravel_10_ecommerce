@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ColorController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SizeController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\UnitController;
@@ -48,20 +49,25 @@ Route::prefix('/admin')->group(function(){
         Route::get('/sub-categories/status/{subCategory}',[SubCategoryController::class, 'status'])->name('sub-categories.status');
 
         // Brand Route
-        Route::resource('brands', BrandController::class);
+        Route::resource('/brands', BrandController::class);
         Route::get('/brands/status/{brand}',[BrandController::class, 'status'])->name('brands.status');
 
         // Unit Route
-        Route::resource('units', UnitController::class);
+        Route::resource('/units', UnitController::class);
         Route::get('/units/status/{unit}',[UnitController::class, 'status'])->name('units.status');
 
         // Size Route
-        Route::resource('sizes', SizeController::class);
+        Route::resource('/sizes', SizeController::class);
         Route::get('/sizes/status/{size}',[SizeController::class, 'status'])->name('sizes.status');
 
         // Color Route
-        Route::resource('colors', ColorController::class);
+        Route::resource('/colors', ColorController::class);
         Route::get('/colors/status/{color}',[ColorController::class, 'status'])->name('colors.status');
+
+        // Product Route
+        Route::resource('/products', ProductController::class);
+        Route::get('/products-subcategory',[ProductController::class, 'subcategory'])->name('products.subcategory');
+        Route::get('/products/status/{product}',[ProductController::class, 'status'])->name('products.status');
     });
 });
 

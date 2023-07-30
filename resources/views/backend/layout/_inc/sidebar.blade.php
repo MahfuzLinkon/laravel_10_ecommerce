@@ -54,6 +54,14 @@
                 </ul>
             </li>
 
+            <li>
+                <a class="dropmenu" href="#"><i class="icon-shopping-cart"></i><span class="hidden-tablet"> Product</span></a>
+                <ul>
+                    <li><a class="submenu" href="{{ route('products.index') }}"><i class="icon-file-alt"></i><span class="hidden-tablet"> All Product</span></a></li>
+                    <li><a class="submenu" href="{{ route('products.create') }}"><i class="icon-edit"></i><span class="hidden-tablet"> Create Product</span></a></li>
+                </ul>
+            </li>
+
 
 
             {{--            <li><a href="form.html"><i class="icon-edit"></i><span class="hidden-tablet"> Forms</span></a></li>--}}
