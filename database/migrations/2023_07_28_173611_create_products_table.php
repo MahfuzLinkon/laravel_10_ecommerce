@@ -21,8 +21,11 @@ return new class extends Migration
             $table->foreignId('color_id')->constrained()->cascadeOnDelete();
             $table->string('code');
             $table->string('name');
+            $table->text('short_description');
             $table->text('description');
             $table->float('price');
+            $table->float('discount_price')->nullable();
+            $table->integer('discount_percentage')->nullable();
             $table->text('image');
             $table->tinyInteger('status')->default(1)->comment('1 => Active; 0 => Deactivate');
             $table->timestamps();

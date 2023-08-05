@@ -22,6 +22,9 @@ class Product extends Model
         'description',
         'price',
         'image',
+        'short_description',
+        'discount_price',
+        'discount_percentage',
     ];
 
     public static function updateOrCreateProduct($request, $id = null)
@@ -29,7 +32,7 @@ class Product extends Model
         $images = [] ;
         if ($request->image){
             for($i = 0; $i < count($request->image); $i++){
-                $images[] = Helper::uploadImage($request->image[$i], 'backend/img/product/', $id !== null ? Product::find($id)->image : '');
+                $images[] = Helper::uploadImage($request->image[$i], 'backend/img/product/', $id !== null ? Product::find($id)->image : '', 600, 600);
             }
         }
 
@@ -43,8 +46,11 @@ class Product extends Model
             'color_id' =>$request->color_id,
             'code' =>$request->code,
             'name' =>$request->name,
+            'short_description' =>$request->short_description,
             'description' =>$request->description,
             'price' =>$request->price,
+            'discount_percentage' =>$request->discount_percentage,
+            'discount_price' =>$request->discount_price,
             'image' => $request->image !== null ? implode(',' , $images) : ($id !== null ? Product::find($id)->image : ''),
         ]);
     }
@@ -86,6 +92,16 @@ class Product extends Model
     public function color()
     {
         return $this->belongsTo(Color::class);
+    }
+
+    // Product Count
+    public static function subcategoryProductCount($subcategoryId)
+    {
+        return Product::where('subcategory_id', $subcategoryId)->where('status', 1)->count();
+    }
+    public static function brandProductCount($brandId)
+    {
+        return Product::where('brand_id', $brandId)->where('status', 1)->count();
     }
 
 }

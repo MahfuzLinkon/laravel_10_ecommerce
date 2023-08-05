@@ -75,3 +75,5 @@ Route::prefix('/admin')->group(function(){
 
 // Frontend All Route
 Route::get('/', [IndexController::class, 'index']);
+Route::get('/product-details/{id}', [IndexController::class, 'productDetails'])->name('product.details');
+Route::get('/product-category/{id}', [IndexController::class, 'productCategory'])->name('product.category');

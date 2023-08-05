@@ -49,6 +49,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+//        return $request->all();
         $request->validate([
             'category_id' => 'required',
             'subcategory_id' => 'required',
@@ -60,6 +61,7 @@ class ProductController extends Controller
             'name' => 'required',
             'description' => 'required',
             'price' => 'required',
+            'short_description' => 'required',
         ],[
             'category_id.required' => 'The category field is required.',
             'subcategory_id.required' => 'The subcategory field is required.',

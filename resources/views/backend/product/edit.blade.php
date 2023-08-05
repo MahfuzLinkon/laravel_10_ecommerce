@@ -156,9 +156,48 @@
                         <div class="control-group">
                             <label class="control-label" for="date01">Product Price</label>
                             <div class="controls">
-                                <input type="number" value="{{ $product->price }}" style="width: 503px" class="input-xlarge span5" name="price" >
+                                <input type="number" value="{{ $product->price }}" id="price" style="width: 503px" class="input-xlarge span5" name="price" >
                             </div>
                             @error('price')
+                            <div class="controls" style="margin-top: 5px;">
+                                <span style="color: red;">{{ $message }}</span>
+                            </div>
+                            @enderror
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="date01">Discount Percentage</label>
+                            <div class="controls">
+                                <div class="input-prepend input-append">
+                                    <input  size="16" value="{{ $product->discount_percentage }}" name="discount_percentage" id="discount_percentage" type="number"><span class="add-on">%</span>
+                                </div>
+                            </div>
+                            @error('discount_percentage')
+                            <div class="controls" style="margin-top: 5px;">
+                                <span style="color: red;">{{ $message }}</span>
+                            </div>
+                            @enderror
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="date01">Discount Price</label>
+                            <div class="controls">
+                                <div class="input-prepend input-append">
+                                    <span class="add-on">&#2547;</span><input size="" id="disPrice" readonly type="number" value="{{ $product->discount_price }}" size="16" class="input-xlarge" name="discount_price" ><span class="add-on">.00</span>
+                                </div>
+                            </div>
+                            @error('discount_price')
+                            <div class="controls" style="margin-top: 5px;">
+                                <span style="color: red;">{{ $message }}</span>
+                            </div>
+                            @enderror
+                        </div>
+
+                        <div class="control-group hidden-phone">
+                            <label class="control-label" for="textarea2">Short Description</label>
+                            <div class="controls">
+                                <textarea id="" class="" style="width: 36%" name="short_description" rows="4">{!! $product->short_description !!}</textarea>
+                            </div>
+                            @error('short_description')
                             <div class="controls" style="margin-top: 5px;">
                                 <span style="color: red;">{{ $message }}</span>
                             </div>
@@ -212,6 +251,16 @@
                     $('#subcategory').empty().append(option);
                 }
             });
+        });
+
+        // Discount Percentage Calculation
+        $(document).on('keyup', '#price, #discount_percentage', function (){
+            let price = $('#price').val();
+            let disPercentage = $('#discount_percentage').val();
+            console.log(price, disPercentage);
+            let disPrice = Math.ceil(price - (price * disPercentage /100));
+            console.log(disPrice);
+            $('#disPrice').val(disPrice);
         });
     </script>
 @endsection

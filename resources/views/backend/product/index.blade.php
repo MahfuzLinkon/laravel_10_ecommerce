@@ -23,6 +23,8 @@
                             <th style="width: 8%">Product Code</th>
                             <th style="">Name</th>
                             <th style="">Price</th>
+                            <th style="">Discount Percentage</th>
+                            <th style="">Discount Price</th>
                             <th style="">Category</th>
                             <th style="">Subcategory</th>
                             <th style="">Brand</th>
@@ -42,6 +44,9 @@
                             <td class="center">{{ $product->code }}</td>
                             <td class="center">{{ $product->name }}</td>
                             <td class="center">{{ $product->price }}</td>
+                            <td class="center">{{ $product->discount_percentage }}%</td>
+                            <td class="center">{{ $product->discount_price }}</td>
+
                             <td class="center">{{ $product->category->name }}</td>
                             <td class="center">{{ $product->subcategory->name }}</td>
                             <td class="center">{{ $product->brand->name }}</td>
