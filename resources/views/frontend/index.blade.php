@@ -109,6 +109,7 @@
                                             <h4 class="product-price">&#2547;{{ $product->price }}.00 </h4>
                                             @endif
 
+
                                             <div class="product-rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -122,11 +123,17 @@
                                                 <button  class="quick-view"><a href="{{ route('product.details', ['id'=> $product->id]) }}"><i class="fa fa-eye"></i></a><span class="tooltipp">quick view</span></button>
                                             </div>
                                         </div>
-                                        <div class="add-to-cart">
-                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                                        </div>
+                                        <form action="{{ route('product.add-to-cart') }}" method="post">
+                                            @csrf
+                                            <input type="hidden" value="{{ $product->id }}" name="product_id">
+                                            <input type="hidden" value="1" name="quantity">
+                                            <div class="add-to-cart">
+                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                            </div>
+                                        </form>
                                     </div>
                                     @endforeach
+
                                     <!-- /product -->
                                 </div>
                                 <div id="slick-nav-1" class="products-slick-nav"></div>

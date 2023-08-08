@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SizeController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\UnitController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -77,3 +78,6 @@ Route::prefix('/admin')->group(function(){
 Route::get('/', [IndexController::class, 'index']);
 Route::get('/product-details/{id}', [IndexController::class, 'productDetails'])->name('product.details');
 Route::get('/product-category/{id}', [IndexController::class, 'productCategory'])->name('product.category');
+
+// Cart Route
+Route::post('/product/add-to-cart', [CartController::class, 'create'])->name('product.add-to-cart');
