@@ -8,7 +8,17 @@
         </ul>
         <ul class="header-links pull-right">
             <li><a href="#"><i class="fa">&#2547;</i> BDT</a></li>
-            <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+            @if(!auth()->check())
+            <li><a href="{{ route('login') }}"><i class="fa fa-user-o"></i>Login</a></li>
+            @else
+            <li>
+{{--                <a href="{{ route('login') }}"><i class="fa fa-user-o"></i>Logout</a>--}}
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <button type="submit" style="background-color: transparent; border: none; color: white" class=""><i class="fa fa-user-o"></i>Logout</button>
+                </form>
+            </li>
+            @endif
         </ul>
     </div>
 </div>
@@ -81,7 +91,7 @@
                                         <h3 class="product-name"><a href="#">{{ $item['name'] }}</a></h3>
                                         <h4 class="product-price"><span class="qty">{{ $item['quantity'] }}x</span>&#2547; {{ $item['price'] }}.00</h4>
                                     </div>
-                                    <a href="{{  }}" class="delete"><i class="fa fa-close"></i></a>
+                                    <a href="{{ route('product.remove-from-cart', $item['id']) }}" class="delete"><i class="fa fa-close"></i></a>
                                 </div>
                                 @endforeach
 
@@ -91,8 +101,8 @@
                                 <h5>SUBTOTAL: &#2547; {{ Cart::getTotal() }}.00</h5>
                             </div>
                             <div class="cart-btns">
-                                <a href="#">View Cart</a>
-                                <a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+                                <a href="">View Cart</a>
+                                <a href="{{ route('product.checkout') }}">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </div>

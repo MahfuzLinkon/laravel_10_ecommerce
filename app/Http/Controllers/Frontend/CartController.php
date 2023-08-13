@@ -22,6 +22,12 @@ class CartController extends Controller
         cartArray();
         return redirect()->back();
     }
+
+    public function destroy($id)
+    {
+        Cart::remove($id);
+        return redirect()->back();
+    }
 }
 
 

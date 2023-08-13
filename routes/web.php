@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\SizeController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\UnitController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -72,8 +73,6 @@ Route::prefix('/admin')->group(function(){
     });
 });
 
-
-
 // Frontend All Route
 Route::get('/', [IndexController::class, 'index']);
 Route::get('/product-details/{id}', [IndexController::class, 'productDetails'])->name('product.details');
@@ -81,3 +80,8 @@ Route::get('/product-category/{id}', [IndexController::class, 'productCategory']
 
 // Cart Route
 Route::post('/product/add-to-cart', [CartController::class, 'create'])->name('product.add-to-cart');
+Route::get('/product/remove-from-cart/{id}', [CartController::class, 'destroy'])->name('product.remove-from-cart');
+
+// Checkout Route
+Route::get('/product/checkout', [CheckoutController::class, 'index'])->name('product.checkout')->middleware('auth');
+Route::post('/place-order', [CheckoutController::class, 'placeOrder'])->name('place.order')->middleware('auth');
