@@ -43,16 +43,20 @@
             <!-- SEARCH BAR -->
             <div class="col-md-6">
                 <div class="header-search">
-                    <form>
-                        <select class="input-select">
-                            <option value="0">All Categories</option>
+
+
+                    <form action="{{ route('product.search') }}" method="get">
+                        <select class="input-select" name="category_id">
+                            <option value="all" {{ request('category_id') == 'all' ? 'selected' : '' }}>All Categories</option>
                             @foreach($categories as $category)
-                            <option value="{{ $category->id }}">{{ ucfirst($category->name) }}</option>
+                            <option value="{{ $category->id }}" {{ request('category_id') ==  $category->id ? 'selected' : ''}}>{{ ucfirst($category->name) }}</option>
                             @endforeach
                         </select>
-                        <input class="input" placeholder="Search here">
+                        <input class="input" name="product_name" value="{{ request('product_name') }}" placeholder="Search here">
                         <button class="search-btn">Search</button>
                     </form>
+
+
                 </div>
             </div>
             <!-- /SEARCH BAR -->

@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ColorController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SizeController;
 use App\Http\Controllers\Backend\SubCategoryController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SslCommerzPaymentController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -70,6 +72,10 @@ Route::prefix('/admin')->group(function(){
         Route::resource('/products', ProductController::class);
         Route::get('/products-subcategory',[ProductController::class, 'subcategory'])->name('products.subcategory');
         Route::get('/products/status/{product}',[ProductController::class, 'status'])->name('products.status');
+
+        // Order Route
+        Route::get('/manage-order', [OrderController::class, 'index'])->name('manage.order');
+        Route::get('/order-details/{id}', [OrderController::class, 'show'])->name('order.details');
     });
 });
 
@@ -78,6 +84,10 @@ Route::get('/', [IndexController::class, 'index']);
 Route::get('/product-details/{id}', [IndexController::class, 'productDetails'])->name('product.details');
 Route::get('/product-category/{id}', [IndexController::class, 'productCategory'])->name('product.category');
 
+// Product Search
+Route::get('/product-search', [IndexController::class, 'productSearch'])->name('product.search');
+
+
 // Cart Route
 Route::post('/product/add-to-cart', [CartController::class, 'create'])->name('product.add-to-cart');
 Route::get('/product/remove-from-cart/{id}', [CartController::class, 'destroy'])->name('product.remove-from-cart');
@@ -85,3 +95,18 @@ Route::get('/product/remove-from-cart/{id}', [CartController::class, 'destroy'])
 // Checkout Route
 Route::get('/product/checkout', [CheckoutController::class, 'index'])->name('product.checkout')->middleware('auth');
 Route::post('/place-order', [CheckoutController::class, 'placeOrder'])->name('place.order')->middleware('auth');
+
+
+// SSLCOMMERZ Start
+Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
+Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+
+Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+
+Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+//SSLCOMMERZ END

@@ -11,11 +11,28 @@ use App\Models\Size;
 use App\Models\SubCategory;
 use App\Models\Unit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
     public function index()
     {
+        $top_sales = DB::table('products')
+            ->leftJoin('order_details', 'products.id', '=', 'order_details.product_id')
+            ->selectRaw('products.id, SUM(order_details.product_sales_qty) as total')
+            ->groupBy('products.id')
+            ->orderBy('total', 'DESC')
+            ->take(8)
+            ->get();
+        $topProduct = [];
+        foreach ($top_sales as $sale){
+            $product = Product::findOrFail($sale->id);
+            $product->totalSalesQty = $sale->total;
+            $topProduct[] = $product;
+        }
+//        return $topProduct;
+
+
         return view('frontend.index',[
             'categories' => Category::orderBy('name', 'ASC')->where('status', 1)->get(),
             'brands' => Brand::orderBy('name', 'ASC')->where('status', 1)->get(),
@@ -23,6 +40,7 @@ class IndexController extends Controller
             'sizes' => Size::orderBy('name', 'ASC')->where('status', 1)->get(),
             'colors' => Color::orderBy('name', 'ASC')->where('status', 1)->get(),
             'products' => Product::orderBy('id', 'DESC')->where('status', 1)->limit(10)->get(),
+            'topProducts' =>$topProduct,
         ]);
     }
 
@@ -45,7 +63,20 @@ class IndexController extends Controller
         ]);
     }
 
+    public function productSearch(Request $request)
+    {
+        $products = Product::orderBy('id', 'DESC')->where('name', 'LIKE', '%'. $request->product_name .'%');
+        if ($request->category_id !== 'all'){
+            $products->where('category_id', $request->category_id);
+        }
+        $products = $products->get();
 
+        return view('frontend.pages.product-category',[
+            'subcategories' => SubCategory::orderBy('name', 'ASC')->where('status', 1)->get(),
+            'brands' => Brand::orderBy('name', 'ASC')->where('status', 1)->get(),
+            'products' => $products,
+        ]);
+    }
 
 
 
